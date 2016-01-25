@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Get the latest webcam shot from outside "Friday's" in Times Square
 public class GMapStaticImage : MonoBehaviour
 {
     #region REQUEST_DATAS
@@ -9,7 +8,8 @@ public class GMapStaticImage : MonoBehaviour
     public int zoom = 5;
     public MapType type;
     public Vector2 size = new Vector2(800, 600);
-    public Vector2[] markers;
+    public ArrayList markers;
+    public Vector2[] markersList;
 
     public string urlBase = "http://maps.google.com/maps/api/staticmap?";
     public string url = "http://maps.google.com/maps/api/staticmap?center=64.88833,28.88889&zoom=5&size=800x600&type=hybrid&sensor=true";
@@ -25,6 +25,10 @@ public class GMapStaticImage : MonoBehaviour
     void Start()
     {
         _renderer = GetComponent<Renderer>();
+        if(this.markers == null)
+        {
+            this.markers = new ArrayList();
+        }
     }
 
     /// <summary>
@@ -45,22 +49,41 @@ public class GMapStaticImage : MonoBehaviour
     /// <param name="zoom"></param>
     /// <param name="type"></param>
     /// <returns>string url</returns>
-    private string MakeUrlRequest(Vector2 coo, Vector2 size, int zoom, MapType type, Vector2[] markers)
+    private string MakeUrlRequest(Vector2 coo, Vector2 size, int zoom, MapType type, ArrayList markers)
     {
         string ret = urlBase                                          // request base string adress
             + "center=" + coo[0].ToString() + "," + coo[1].ToString() // + position
             + "&zoom=" + zoom.ToString()                              // + zoom
             + "&size=" + size[0].ToString() + "x" + size[1].ToString()// + size
-            + "&maptype=" + type.ToString();                          // +maptype
-            // + "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + coo[0].ToString() + "," + coo[1].ToString() // + marker example
-            // + "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + coo[1].ToString() + "," + coo[1].ToString();// + marker example
-
-        //add markers to request
-        foreach (Vector2 marker in markers)
+            + "&maptype=" + type.ToString();                          // + maptype
+                                                                      // + "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + coo[0].ToString() + "," + coo[1].ToString() // + marker example
+                                                                      // + "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + coo[1].ToString() + "," + coo[1].ToString();// + marker example
+        int count = 15;
+        if (markers != null)
         {
-            ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+            //add markers to request
+            
+            foreach (Vector2 marker in markers)
+            {
+                if(count-- == 0)
+                {                  
+                    break;
+                }
+               // ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+            }
         }
-
+        if (markersList != null)
+        {
+            foreach (Vector2 marker in markersList)
+            {
+                if (count-- <= 0)
+                {
+                    break;
+                }
+             //   ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + markersList[0].ToString() + "," + markersList[1].ToString();
+            }
+        }
+        url = ret;
         return ret;
     }
 

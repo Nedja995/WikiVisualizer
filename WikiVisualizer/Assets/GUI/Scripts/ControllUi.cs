@@ -8,8 +8,11 @@ public class ControllUi : MonoBehaviour {
 
     public Slider zoomSlider;
 
-	// Use this for initialization
-	void Start () {
+    public Slider latitudeSlider;
+    public Slider longitudeSlider;
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -17,6 +20,12 @@ public class ControllUi : MonoBehaviour {
     public void ZoomChanged()
     {
         gMapStaticImage.zoom = (int)zoomSlider.value;
+    }
+
+    public void PositionChanged()
+    {
+        gMapStaticImage.coo[1] = latitudeSlider.value;
+        gMapStaticImage.coo[0] = longitudeSlider.value;
     }
 
 	// Update is called once per frame
