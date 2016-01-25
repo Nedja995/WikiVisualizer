@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WikiVis;
-
+using WikiVis.Datas;
 
 namespace WikiVis.Parsers
 {
-    class ParserBattle : Parser<BattleData>
+    class ParserBattle : Parser<EventBattle>
     {
         private string getClear(string str)
         {
@@ -15,9 +15,9 @@ namespace WikiVis.Parsers
            // someString = str.StartsWith("\"") ? str.Substring(1, str.Length - 1) : str;
             return someString;
         }
-        public BattleData Parse(string text)
-        {      
-            BattleData ret = new BattleData();
+        public EventBattle Parse(string text)
+        {
+            EventBattle ret = new EventBattle();
 
             //check
             string[] battleParams = text.Split(',');
@@ -39,7 +39,7 @@ namespace WikiVis.Parsers
                 ret.Latitudue = float.Parse(clearStr);
             }
             //  
-            ret.Date = battleParams[3];
+            ret.DateStart = battleParams[3];
 
             return ret;
         }

@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Text;
 using WikiVis.Parsers;
+using WikiVis.Datas;
 
 namespace WikiVis.Components
 {
@@ -24,7 +25,7 @@ namespace WikiVis.Components
             string[] battles = text.Split('\n');
             foreach(string battle in battles)
             {
-                BattleData bd = new ParserBattle().Parse(battle);
+                EventBattle bd = new ParserBattle().Parse(battle);
                 if(this.battles == null) {
                     this.battles = new ArrayList();
                 }
@@ -32,11 +33,11 @@ namespace WikiVis.Components
             }
            
 
-            foreach(BattleData battle in this.battles)
+            foreach(EventBattle battle in this.battles)
             {
                 string battleName = battle.Name;
                 string battleRef = battle.ReferenceURL;
-                string battleDate = battle.Date;
+                string battleDate = battle.DateStart;
                 if(map.markers == null)
                 {
                     map.markers = new ArrayList();

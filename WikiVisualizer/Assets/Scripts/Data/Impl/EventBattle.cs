@@ -1,21 +1,18 @@
 ﻿
 using System;
 
-namespace WikiVis
+namespace WikiVis.Datas
 {
     /// <summary>
     /// Base Battle datas
     /// </summary>
-    public class BattleData : WikiVisData
+    public class EventBattle : Event
     {
-        public string Date;
         public BattleParticipant[] Agressors;
         public BattleParticipant[] Defenders;
-        public float Longitude;
-        public float Latitudue;
     }
 
-    public class BattleParticipant : WikiVisData
+    public class BattleParticipant : Participant
     {
         int Solders;
     }
