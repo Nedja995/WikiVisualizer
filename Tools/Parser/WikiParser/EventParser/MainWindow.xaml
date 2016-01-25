@@ -1,0 +1,14 @@
+﻿<Window x:Class="EventParser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventParser"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="ParseBtn" Click="ParseBtn_Click" Content="Parse" HorizontalAlignment="Left" Margin="156,237,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="InputFileTxt" HorizontalAlignment="Left" Margin="30,187,0,0" TextWrapping="Wrap" Text="csv location" VerticalAlignment="Top" Height="34" Width="437"/>
+
+    </Grid>
+</Window>
