@@ -1,6 +1,7 @@
 WikiVis Project Strucutre
 =========================
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 WikiVis
 |
 |__Builds  <- Unity and parser tool builds
@@ -35,3 +36,4 @@ WikiVis
 			|__Tools <- third party tools 
 				|__Editors <- editors that use extern tools
 				|__ThirdParty <- classes writen in c# and also used in `wpf gui` project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
