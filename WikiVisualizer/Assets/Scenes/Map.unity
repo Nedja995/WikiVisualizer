@@ -267,10 +267,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2090391181}
   m_HandleRect: {fileID: 1554139096}
   m_Direction: 3
-  m_MinValue: 0
+  m_MinValue: -90
   m_MaxValue: 90
   m_WholeNumbers: 0
-  m_Value: 28.8888874
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1683,9 +1683,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 357577698}
   m_Direction: 3
   m_MinValue: 1
-  m_MaxValue: 17
-  m_WholeNumbers: 0
-  m_Value: 13.5
+  m_MaxValue: 15
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1910,10 +1910,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1094495691}
   m_HandleRect: {fileID: 1568370628}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: -90
   m_MaxValue: 90
   m_WholeNumbers: 0
-  m_Value: 64.8883286
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2032,13 +2032,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71e0d184a42fbc43bc569b962ebd33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coo: {x: 64.8883286, y: 28.8888893}
-  zoom: 5
-  type: 0
-  size: {x: 1024, y: 600}
-  markersList: []
+  coo: {x: 0, y: 0}
+  zoom: 1
+  type: 1
+  size: {x: 800, y: 500}
+  markersList:
+  - {x: .00999999978, y: .00999999978}
   urlBase: http://maps.google.com/maps/api/staticmap?
   url: http://maps.google.com/maps/api/staticmap?center=64.88833,28.88889&zoom=5&size=800x600&type=hybrid&sensor=true
+  RefreshImage: 0
 --- !u!23 &2041159028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2095,7 +2097,7 @@ Transform:
   m_GameObject: {fileID: 2041159026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 80, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

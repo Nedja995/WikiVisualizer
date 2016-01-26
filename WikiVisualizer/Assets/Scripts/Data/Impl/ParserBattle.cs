@@ -18,10 +18,10 @@ namespace WikiVis.Parsers
         public EventBattle Parse(string text)
         {
             EventBattle ret = new EventBattle();
-
-            //check
+     
             string[] battleParams = text.Split(',');
-            if(battleParams.Length <= 3)
+            //Check parametar number
+            if (battleParams.Length <= 3)
             {
                 return ret;
             }
@@ -29,16 +29,18 @@ namespace WikiVis.Parsers
             ret.Name = battleParams[0];
             //Url
             ret.ReferenceURL = battleParams[1];
-            //Check coordinate strings
+            //check coordinate strings
             string[] coordScraped = battleParams[2].Split('/');
             if(coordScraped.Length == 3)
             {
                 string[] longAndLat = coordScraped[2].Split(';');
+                //lon
                 ret.Longitude = float.Parse(longAndLat[0]); 
+                //lat
                 string clearStr = getClear(longAndLat[1]); //clear param
                 ret.Latitudue = float.Parse(clearStr);
             }
-            //  
+            //Date  
             ret.DateStart = battleParams[3];
 
             return ret;

@@ -20,12 +20,14 @@ public class ControllUi : MonoBehaviour {
     public void ZoomChanged()
     {
         gMapStaticImage.zoom = (int)zoomSlider.value;
+        gMapStaticImage.RefreshImage = true;
     }
 
     public void PositionChanged()
     {
         gMapStaticImage.coo[1] = latitudeSlider.value;
-        gMapStaticImage.coo[0] = longitudeSlider.value;
+        gMapStaticImage.coo[0] = -longitudeSlider.value;
+        gMapStaticImage.RefreshImage = true;
     }
 
 	// Update is called once per frame
