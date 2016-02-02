@@ -2040,7 +2040,7 @@ MonoBehaviour:
   - {x: .00999999978, y: .00999999978}
   urlBase: http://maps.google.com/maps/api/staticmap?
   url: http://maps.google.com/maps/api/staticmap?center=64.88833,28.88889&zoom=5&size=800x600&type=hybrid&sensor=true
-  RefreshImage: 0
+  RefreshImage: 1
 --- !u!23 &2041159028
 MeshRenderer:
   m_ObjectHideFlags: 0

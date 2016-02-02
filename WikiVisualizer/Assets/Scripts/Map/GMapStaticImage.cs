@@ -1,5 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using WikiWis;
+
+namespace WikiWis {
+    public class Marker {
+        public Marker(Vector2 absoloute)
+        {
+            absoluteCoodinates = absoloute;
+        }
+        public Vector2 absoluteCoodinates;
+        public Vector2 relativeCoodinates;
+    }
+}
 
 public class GMapStaticImage : MonoBehaviour
 {
@@ -17,6 +30,7 @@ public class GMapStaticImage : MonoBehaviour
 
     public bool RefreshImage;
 
+    public List<Marker> _relativeMarkers;
 
     public enum MapType{
         satellite,
@@ -154,6 +168,39 @@ public class GMapStaticImage : MonoBehaviour
             }
         }
     }
+
+    public void AddMarker(int longitude, int latitude)
+    {
+        if(_relativeMarkers == null)
+        {
+            _relativeMarkers = new List<Marker>();
+        }
+        _relativeMarkers.Add(new Marker(new Vector2(longitude, latitude)));
+    }
+
+    private void _recalculateMarkerRelativeCoordinates()
+    {
+        foreach(Marker marker in _relativeMarkers)
+        {
+            if(zoom == 0)
+            {
+                Vector2 newRel = new Vector2();
+                newRel = marker.relativeCoodinates;
+            }
+        }
+    }
+
+    public Vector3 Get3DAbsolutCoordinate(int x, int y, int z)
+    {
+        return new Vector3(
+                          transform.position.x + x
+                        , transform.position.y + y
+                        , transform.position.z + z
+                        );
+    }
+
+
+
 
     #region PRIVATE
     private Renderer _renderer;
