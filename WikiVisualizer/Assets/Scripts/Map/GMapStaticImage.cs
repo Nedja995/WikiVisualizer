@@ -37,7 +37,8 @@ public class GMapStaticImage : MonoBehaviour
         hybrid
     };
 
-
+    public GameObject markerLabelPrefab;
+    public GameObject markersContainer;
 
     void Start()
     {
@@ -105,7 +106,7 @@ public class GMapStaticImage : MonoBehaviour
                 {                  
                     break;
                 }
-                ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+                //ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
             }
         }
         //add custom markers to request      
@@ -118,6 +119,9 @@ public class GMapStaticImage : MonoBehaviour
                     break;
                 }
                 ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+                GameObject mlObj = Instantiate<GameObject>(markerLabelPrefab);
+                MarkerLabel ml = mlObj.GetComponent<MarkerLabel>();
+                ml.coordinates = marker;
             }
         }
         //set gui propery

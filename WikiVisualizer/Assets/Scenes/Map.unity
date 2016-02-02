@@ -1092,6 +1092,52 @@ RectTransform:
   m_AnchoredPosition: {x: 512, y: 111}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!1001 &1259344101
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476940, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473288, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 2041159027}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1287227654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,7 +1413,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 41
   orthographic: 0
   orthographic size: 100
   m_Depth: -1
@@ -2035,12 +2081,16 @@ MonoBehaviour:
   coo: {x: 0, y: 0}
   zoom: 1
   type: 1
-  size: {x: 800, y: 500}
+  size: {x: 500, y: 300}
   markersList:
-  - {x: .00999999978, y: .00999999978}
+  - {x: 0, y: 0}
+  - {x: 25, y: 0}
+  - {x: 0, y: 25}
   urlBase: http://maps.google.com/maps/api/staticmap?
-  url: http://maps.google.com/maps/api/staticmap?center=64.88833,28.88889&zoom=5&size=800x600&type=hybrid&sensor=true
+  url: http://maps.google.com/maps/api/staticmap?center=0,0&zoom=1&size=500x300&maptype=hybrid&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C0,0&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C-45,-45&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C45,-45&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C-45,45&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C45,45
   RefreshImage: 1
+  markerLabelPrefab: {fileID: 124646, guid: b636b00288ec47c4ebe0df2f9378c825, type: 2}
+  markersContainer: {fileID: 0}
 --- !u!23 &2041159028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2097,7 +2147,7 @@ Transform:
   m_GameObject: {fileID: 2041159026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 80, y: 50, z: 50}
+  m_LocalScale: {x: 50, y: 1, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
