@@ -1,8 +1,6 @@
-﻿//C# Example
-
-using UnityEngine;
+﻿
 using UnityEditor;
-using System.Collections;
+
 
 class DataParserEditor : EditorWindow
 {

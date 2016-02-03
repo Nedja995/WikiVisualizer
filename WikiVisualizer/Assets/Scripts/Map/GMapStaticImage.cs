@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using WikiWis;
+using System;
 
 namespace WikiWis {
     public class Marker {
@@ -17,18 +18,21 @@ namespace WikiWis {
 public class GMapStaticImage : MonoBehaviour
 {
     #region REQUEST_DATAS
-    public Vector2 coo = new Vector2(64.88833f, 28.88889f);
+    public Vector2 coo = new Vector2(0f, 0f);
     public int zoom;
     public MapType type;
     public Vector2 size = new Vector2(800, 600);
     public ArrayList markers;
     public Vector2[] markersList;
 
-    public string urlBase = "http://maps.google.com/maps/api/staticmap?";
-    public string url = "http://maps.google.com/maps/api/staticmap?center=64.88833,28.88889&zoom=5&size=800x600&type=hybrid&sensor=true";
+    private string urlBase = "http://maps.google.com/maps/api/staticmap?";
+    public String url;// http://maps.google.com/maps/api/staticmap?center=64.88833,28.88889&zoom=5&size=800x600&type=hybrid&sensor=true";
     #endregion
 
-    public bool RefreshImage;
+    public bool RefreshImage
+    {
+        get; set;
+    }
 
     public List<Marker> _relativeMarkers;
 
@@ -96,38 +100,58 @@ public class GMapStaticImage : MonoBehaviour
             + "&maptype=" + type.ToString();                          // + maptype
                                                                       // + "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + coo[0].ToString() + "," + coo[1].ToString() // + marker example
                                                                       // + "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + coo[1].ToString() + "," + coo[1].ToString();// + marker example
+
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("MarkerLabel");
+        foreach (GameObject go in gos)
+        {
+            DestroyObject(go);
+        }
+
+
         int count = 35;
         if (markers != null)
         {
             //add markers to request           
             foreach (Vector2 marker in markers)
             {
-                if(count-- == 0)
+                
+                if (count-- == 0)
                 {                  
                     break;
                 }
-                //ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+                ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+             //   ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+                GameObject mlObj = Instantiate<GameObject>(markerLabelPrefab);
+                MarkerLabel ml = mlObj.GetComponent<MarkerLabel>();
+                ml.coordinates = marker;
+                ml.zoom = zoom;
             }
         }
         //add custom markers to request      
         if (markersList != null)
         {
+           
             foreach (Vector2 marker in markersList /* gui property */)
             {
                 if (count-- <= 0)
                 {
                     break;
                 }
-                ret += "&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
+                ret += "&markers=%7Clabel:1%7C" + marker[0].ToString() + "," + marker[1].ToString();
                 GameObject mlObj = Instantiate<GameObject>(markerLabelPrefab);
                 MarkerLabel ml = mlObj.GetComponent<MarkerLabel>();
                 ml.coordinates = marker;
+                ml.zoom = zoom;
             }
         }
+        /* google static map api key */
+        ret += "&key=AIzaSyDb-yIJTeihCDkU_GAVK67i878h88zfYIk";
         //set gui propery
         url = ret;
         return ret;
     }
+
+    
 
     /// <summary>
     /// Download image and set buffer
@@ -181,28 +205,6 @@ public class GMapStaticImage : MonoBehaviour
         }
         _relativeMarkers.Add(new Marker(new Vector2(longitude, latitude)));
     }
-
-    private void _recalculateMarkerRelativeCoordinates()
-    {
-        foreach(Marker marker in _relativeMarkers)
-        {
-            if(zoom == 0)
-            {
-                Vector2 newRel = new Vector2();
-                newRel = marker.relativeCoodinates;
-            }
-        }
-    }
-
-    public Vector3 Get3DAbsolutCoordinate(int x, int y, int z)
-    {
-        return new Vector3(
-                          transform.position.x + x
-                        , transform.position.y + y
-                        , transform.position.z + z
-                        );
-    }
-
 
 
 

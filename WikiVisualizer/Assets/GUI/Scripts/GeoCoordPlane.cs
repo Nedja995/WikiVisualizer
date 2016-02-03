@@ -12,29 +12,39 @@ namespace WikiWis
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="latitude">Converted to Y coordinate</param>
         /// <param name="longitude">Converted to X coordinate</param>
+        /// <param name="latitude">Converted to Y coordinate</param>
         /// <param name="planeWidth">Map plane width</param>
         /// <param name="planeHeight">Map plane height</param>
+        /// <param name="centerLongitude">Map center latitude</param>
+        /// <param name="centerLatitude">Map center longitude<</param>
+        /// <param name="zoom">Map zoom</param>
         /// <returns></returns>
-        public static Vector2 CoordinatesTo2D(float latitude, float longitude, float planeWidth, float planeHeight)
+        public static Vector2 CoordinatesTo2D(float longitude, float latitude, 
+                                                float planeWidth, float planeHeight,
+                                                float centerLongitude = 0f, float centerLatitude = 0f,
+                                                int zoom = 1)
         {
-            //latitude = 45f;
-            //longitude = 45f;
-            //planeWidth = 800f;
-            //planeHeight = 500f;
+            /* center offset  */
+            longitude -= centerLongitude;
+            latitude -= centerLatitude;
 
-            //latitude += 45f;
-            //longitude += 45f;
-            //int x = (int)((planeWidth / 360.0) * (180 + latitude));
-            //int y = (int)((planeHeight / 180.0) * (90 - longitude));
-            float wCoef = planeWidth / 360.0f;
-            float hCoef = planeHeight / 180.0f;
+            /* max lon and lat depend on zoom */
+            float longitudeVisible = 360f; //at zoom = 1
+            float latitudeVisible = 180f;   //
+            for(int i = 1;i < zoom; i++) {
+                longitudeVisible /= 2f;
+                latitudeVisible /= 2f;
+            }
 
+            /* calculate coeficient */
+            float wCoef = planeWidth / longitudeVisible;
+            float hCoef = planeHeight / latitudeVisible;
+
+            /* coordinate conversion */
             float x = wCoef *  latitude;
             float y = hCoef * longitude;
-            //x += planeWidth / 2;
-           // y += planeHeight / 2;
+
             return new Vector2(x, y);
         }
     }

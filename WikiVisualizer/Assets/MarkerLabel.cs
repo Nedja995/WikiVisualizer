@@ -7,6 +7,7 @@ namespace WikiWis
 
         [Header("Geographic data:")]
         public Vector2 coordinates;
+        public int zoom;
         [Header("Map plane:")]
         public GMapStaticImage map;
         public MeshCollider _mapMesh;
@@ -20,8 +21,10 @@ namespace WikiWis
 	
         public void RefreshPosition()
         {
-            Vector2 worldCoord = GeoCoordPlane.CoordinatesTo2D(-coordinates.y, -coordinates.x,
-                                                                        _mapMesh.bounds.size.x, _mapMesh.bounds.size.z);
+            Vector2 worldCoord = GeoCoordPlane.CoordinatesTo2D(-coordinates.x, -coordinates.y,
+                                                                _mapMesh.bounds.size.x, _mapMesh.bounds.size.z,
+                                                                -map.coo.x, -map.coo.y,
+                                                                zoom);
 
             Vector3 realWorldCoord = new Vector3(worldCoord.x,
                                                     0f,
